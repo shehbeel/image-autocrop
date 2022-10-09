@@ -48,12 +48,17 @@ def autocrop(image, lower, higher):
     # Save image
     #cv2.imwrite(os.path.join(out_directory, 'image.png'), cropped_image) # Add out_directory as input
     
+    # Output cropped image
     return cropped_image
 
-#######Test the Function########
+
+###################################################
+#################Test the Function#################
+
+
 ### Autocropping a single image
 # Load image
-image = cv2.imread('/Users/shehbeelarif/Documents/Bone-Age-CNN/small-image-dataset/10025.png')
+image = cv2.imread('/.../image.png')
 # Autocrop the image
 cropped_image = autocrop(image,20,250)
 # Look at the cropped image
@@ -62,14 +67,21 @@ plt.imshow(cropped_image)
 
 ### Autocropping multiple images in a directory and saving them in new directory
 
-# Image Directory
-img_dir = '/Users/shehbeelarif/Documents/Bone-Age-CNN/small-image-dataset/'
-# Out Directory
-out_dir = '/Users/shehbeelarif/Desktop/bone-age-cropped'
+# Input Images Directory
+img_dir = '.../images-dir'
+# Output Cropped Images Directory
+out_dir = '.../cropped-images-dir'
+
+# Initialize counter
 i=1
+# For loop to iterate over Input Images Directory
 for img in os.listdir(img_dir):
+    # Load image
     image = cv2.imread(img_dir + img)
+    # Autocrop image
     cropped_img = autocrop(image,20,250)
+    # Save cropped images in Cropped Images Directory
     cv2.imwrite(os.path.join(out_dir, 'image' + str(i) + '.png'), cropped_img)
+    # Update counter
     i+=1
 
